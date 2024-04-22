@@ -10,7 +10,7 @@ type CertProps = {
   setModalOpen: () => void
 }
 function abrirLinkNovaJanela(url: string | URL | undefined) {
-  window.open(url, '_blank');
+  window.open(url, '_blank')
 }
 export const Modal = ({ isOpen, setModalOpen, certs }: CertProps) => {
   if (!isOpen) return null
