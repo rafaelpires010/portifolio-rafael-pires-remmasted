@@ -10,9 +10,22 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/free-mode'
+
 type CertsProps = { certs: Certificate[] }
+
 export const CertsSection = ({ certs }: CertsProps) => {
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [selectedCertIndex, setSelectedCertIndex] = useState<number | null>(
+    null,
+  )
+
+  const openModal = (index: number) => {
+    setSelectedCertIndex(index)
+  }
+
+  const closeModal = () => {
+    setSelectedCertIndex(null)
+  }
+
   return (
     <Fragment>
       <section>
@@ -33,12 +46,10 @@ export const CertsSection = ({ certs }: CertsProps) => {
             pagination={{ clickable: true }}
             className="max-w-[90%] lg:max-w-[80%]"
           >
-            {certs.map((cert) => (
+            {certs.map((cert, index) => (
               <SwiperSlide key={cert.title}>
                 <div
-                  onClick={() => {
-                    setIsModalOpen(true)
-                  }}
+                  onClick={() => openModal(index)}
                   className="flex flex-col gap-6 mb-20 group relative shadow-lg rounded-xl px-6 py-8 h-[200px] w-[330px] lg:h-[200px] lg:w-[350px] overflow-hidden cursor-pointer border-2 border-gray-800 hover:border-emerald-500 opacity-70 hover:opacity-100 transition-all"
                 >
                   <Image
@@ -54,11 +65,13 @@ export const CertsSection = ({ certs }: CertsProps) => {
           </Swiper>
         </div>
       </section>
-      <Modal
-        certs={certs}
-        isOpen={isModalOpen}
-        setModalOpen={() => setIsModalOpen(!isModalOpen)}
-      />
+      {selectedCertIndex !== null && (
+        <Modal
+          cert={certs[selectedCertIndex]}
+          isOpen={true}
+          setModalOpen={closeModal}
+        />
+      )}
     </Fragment>
   )
 }
