@@ -55,13 +55,13 @@ export const HeroSection = ({ homeInfo }: HeroSectionProps) => {
               <HiArrowNarrowRight size={18} />
             </Button>
 
-            <div className="text-2xl text-gray-600 flex items-center h-20 gap-3">
+            <div className="text-4xl text-gray-600 flex items-center h-20 gap-3">
               {homeInfo.socials.map((contact, i) => (
                 <a
                   href={contact.url}
                   key={`contact-${i}`}
                   target="_blank"
-                  className="hover:text-gray-100 transition-colors"
+                  className="hover:text-gray-100 transition-all hover:scale-125 duration-[400ms]"
                   rel="noreferrer"
                 >
                   <CMSIcon icon={contact.iconSvg} />

@@ -15,7 +15,7 @@ type ExperienceItemProps = {
 
 export const ExperienceItem = ({ experience }: ExperienceItemProps) => {
   const {
-    endDate,
+    endDa,
     companyName,
     companyLogo,
     companyUrl,
@@ -27,11 +27,11 @@ export const ExperienceItem = ({ experience }: ExperienceItemProps) => {
   const startDate = new Date(experience.startDate)
 
   const formattedStartDate = format(startDate, 'MMM yyyy', { locale: ptBR })
-  const formattedEndDate = endDate
-    ? format(new Date(endDate), 'MMM yyyy', { locale: ptBR })
+  const formattedEndDate = endDa
+    ? format(new Date(endDa), 'MMM yyyy', { locale: ptBR })
     : 'O momento'
 
-  const end = endDate ? new Date(endDate) : new Date()
+  const end = endDa ? new Date(endDa) : new Date()
 
   const months = differenceInMonths(end, startDate)
   const years = differenceInYears(end, startDate)
